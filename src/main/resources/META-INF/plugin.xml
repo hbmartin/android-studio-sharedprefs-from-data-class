@@ -1,0 +1,30 @@
+<idea-plugin>
+    <id>me.haroldmartin.Kotlin Data Class to SharedPrefs</id>
+    <name>Kotlin Data Class to SharedPrefs</name>
+    <vendor email="harold.martin@gmail.com" url="http://github.com/hbmartin">Harold Martin</vendor>
+
+    <description><![CDATA[
+        Generates Android Shared Prefs reader / writer based on Kotlin data class fields
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.lang</depends>
+<!--    <depends>com.intellij.modules.androidstudio</depends>-->
+    <depends>org.jetbrains.kotlin</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <action id="generateSharedPrefsKotlin"
+                class="me.haroldmartin.kotlindataclasstosharedprefs.SharedPrefsAction"
+                text="Generate SharedPrefs"
+                description="Generates Android Shared Prefs reader / writer based on Kotlin data class fields">
+            <add-to-group group-id="GenerateGroup" anchor="last"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
