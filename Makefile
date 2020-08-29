@@ -8,13 +8,11 @@ publish:
 	./gradlew publishPlugin
 
 lint:
-	./gradlew clean ktlintCheck
+	./gradlew clean ktlintCheck detekt
 
 tag:
 	git diff-index --quiet HEAD --  # checks for unstaged/uncomitted files
-	PLUGIN_VERSION=`grep "^version" build.gradle.kts  | cut -f2 -d'=' | tr -d "\" "`
-	@echo "tagging $PLUGIN_VERSION"
-	git tag "v$PLUGIN_VERSION"
+	git tag "v`grep '^version' build.gradle.kts  | cut -f2 -d'=' | tr -d '" '`"
 	git push --tags
 
 check-master:

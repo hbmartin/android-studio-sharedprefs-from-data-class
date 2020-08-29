@@ -2,8 +2,8 @@
 Android Studio plugin to generate SharedPreferences reader / writer class based on Kotlin data class fields
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hbmartin/android-studio-sharedprefs-from-data-class)
-![GitHub top language](https://img.shields.io/github/languages/top/hbmartin/android-studio-sharedprefs-from-data-class?logo=kotlin)
 [![CodeFactor](https://www.codefactor.io/repository/github/hbmartin/android-studio-sharedprefs-from-data-class/badge)](https://www.codefactor.io/repository/github/hbmartin/android-studio-sharedprefs-from-data-class)
+[![Build Status](https://www.travis-ci.com/hbmartin/android-studio-sharedprefs-from-data-class.svg?branch=master)](https://www.travis-ci.com/hbmartin/android-studio-sharedprefs-from-data-class)
 ![GitHub issues](https://img.shields.io/github/issues/hbmartin/android-studio-sharedprefs-from-data-class)
 
 ## Installation & Usage
