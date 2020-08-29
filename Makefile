@@ -1,9 +1,3 @@
-clear:
-	./gradlew clean
-
-build:
-	./gradlew buildPlugin
-
 publish:
 	./gradlew publishPlugin
 

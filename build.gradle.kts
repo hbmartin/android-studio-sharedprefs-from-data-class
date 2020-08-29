@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "me.haroldmartin"
-version = "0.1.0"
+version = "0.1.1"
 
 repositories {
     mavenCentral()
@@ -48,8 +48,12 @@ configure<JavaPluginConvention> {
 }
 
 tasks {
+    publishPlugin {
+        token(System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken"))
+    }
+
     getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
-        changeNotes("""First release""")
+        changeNotes("""v0.1.1 - First release - Kotlin Data Class to SharedPreferences""")
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
