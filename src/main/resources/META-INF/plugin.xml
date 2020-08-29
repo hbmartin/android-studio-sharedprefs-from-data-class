@@ -1,14 +1,13 @@
 <idea-plugin>
-    <id>me.haroldmartin.Kotlin Data Class to SharedPrefs</id>
-    <name>Kotlin Data Class to SharedPrefs</name>
-    <vendor email="harold.martin@gmail.com" url="http://github.com/hbmartin">Harold Martin</vendor>
+    <id>me.haroldmartin.Kotlin Data Class to SharedPreferences</id>
+    <name>Kotlin Data Class to SharedPreferences</name>
+    <vendor email="harold.martin@gmail.com" url="https://github.com/hbmartin/android-studio-sharedprefs-from-data-class/">Harold Martin</vendor>
 
     <description><![CDATA[
-        Generates Android Shared Prefs reader / writer based on Kotlin data class fields
+        Generates Android SharedPreferences reader / writer based on Kotlin data class fields
     ]]></description>
 
-    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.lang</depends>
 <!--    <depends>com.intellij.modules.androidstudio</depends>-->
     <depends>org.jetbrains.kotlin</depends>
