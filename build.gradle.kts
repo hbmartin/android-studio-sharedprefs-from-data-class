@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.intellij") version "0.4.21"
     java
     kotlin("jvm") version "1.3.72"
+    id("org.jlleitschuh.gradle.ktlint") version "9.3.0"
 }
 
 group = "me.haroldmartin"
@@ -24,7 +25,6 @@ intellij {
     updateSinceUntilBuild = false
     setPlugins("Kotlin", "java")
 //    alternativeIdePath = "/Applications/Android Studio 4.2 Preview.app"
-
 }
 
 java {

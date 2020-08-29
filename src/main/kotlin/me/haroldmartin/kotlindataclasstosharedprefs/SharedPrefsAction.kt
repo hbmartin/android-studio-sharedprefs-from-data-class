@@ -12,7 +12,6 @@ import org.jetbrains.kotlin.idea.internal.Location
 import org.jetbrains.kotlin.psi.KtClass
 
 class SharedPrefsAction : AnAction() {
-//    private val logger = Logger.getInstance("SharedPrefsAction")
 
     override fun update(e: AnActionEvent) {
         val ktClass = e.getPsiElement()?.getKtClass()
@@ -58,7 +57,7 @@ fun AnActionEvent.getPsiElement(): PsiElement? {
 
 fun PsiElement.getKtClass(): KtClass? {
     return if (this is KtLightElement<*, *>) {
-        this.kotlinOrigin?.let { it.getKtClass() }
+        this.kotlinOrigin?.getKtClass()
     } else if (this is KtClass && !this.isEnum() &&
         !this.isInterface() &&
         !this.isAnnotation() &&
@@ -66,6 +65,6 @@ fun PsiElement.getKtClass(): KtClass? {
     ) {
         this
     } else {
-        this.parent?.let { it.getKtClass() }
+        this.parent?.getKtClass()
     }
 }

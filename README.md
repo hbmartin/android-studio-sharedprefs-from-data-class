@@ -1,6 +1,8 @@
 # Kotlin Data Class to SharedPrefs plugin for Android Studio
 Android Studio plugin to generate Shared Prefs reader / writer class based on Kotlin data class fields
 
+[![CodeFactor](https://www.codefactor.io/repository/github/hbmartin/android-studio-sharedprefs-from-data-class/badge)](https://www.codefactor.io/repository/github/hbmartin/android-studio-sharedprefs-from-data-class)
+
 ## Installation & Usage
 
 ## Contributing

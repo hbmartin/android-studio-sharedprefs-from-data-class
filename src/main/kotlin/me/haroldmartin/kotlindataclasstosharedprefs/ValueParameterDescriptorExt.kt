@@ -7,22 +7,26 @@ import org.jetbrains.kotlin.incremental.components.NoLookupLocation
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.resolve.lazy.ResolveSession
 
-internal fun Named.keyName(className: String?) = "${className}_${name}"
+internal fun Named.keyName(className: String?) = "${className}_$name"
 
 internal fun List<ValueParameterDescriptor>.toWriters(className: String?): String =
     this.mapNotNull { it.toWriter(className) }.joinToString(separator = "\n", postfix = "\n")
 
 private fun ValueParameterDescriptor.toWriter(className: String?): String? {
-    if (!isEligibleTypeForSharedPrefs()) { return null }
+    if (!isEligibleTypeForSharedPrefs()) {
+        return null
+    }
 
-    return ".put$safeTypeName(${keyName(className)}, ${className.lowerFirst()}.${name})"
+    return ".put$safeTypeName(${keyName(className)}, ${className.lowerFirst()}.$name)"
 }
 
 internal fun List<ValueParameterDescriptor>.toReaders(className: String?): String =
     this.mapNotNull { it.toReader(className) }.joinToString(separator = ",\n", postfix = "\n")
 
 private fun ValueParameterDescriptor.toReader(className: String?): String? {
-    if (!isEligibleTypeForSharedPrefs()) { return null }
+    if (!isEligibleTypeForSharedPrefs()) {
+        return null
+    }
 
     return "$name = sharedPreferences.get$safeTypeName(${keyName(className)}, ${getDefaultValue()})${castIfNecessary()}"
 }
@@ -55,7 +59,6 @@ val ValueParameterDescriptor.safeTypeName
         .replace("?", "")
         .replace("Set<String>", "StringSet")
 
-
 private val eligibleTypes = setOf("Boolean", "Float", "Int", "Long", "String", "String?", "Set<String>", "Set<String>?")
 fun ValueParameterDescriptor.isEligibleTypeForSharedPrefs() =
     eligibleTypes.contains(type.toString())
@@ -72,7 +75,7 @@ fun KtClass.findParams(): List<ValueParameterDescriptor> {
 
 internal fun String?.lowerFirst(default: String = "model"): String {
     if (this == null) return default
-    val c = toCharArray();
-    c[0] = Character.toLowerCase(c[0]);
-    return String(c);
+    val c = toCharArray()
+    c[0] = Character.toLowerCase(c[0])
+    return String(c)
 }

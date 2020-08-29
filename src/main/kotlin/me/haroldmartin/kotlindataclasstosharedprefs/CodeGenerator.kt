@@ -26,39 +26,39 @@ class CodeGenerator(
 
     private fun createCompanionObject() =
         factory
-        .createCompanionObject()
-        .apply {
-            for (param in params) {
-                val paramKey = param.keyName(ktClass.name)
-                addDeclaration(
-                    factory.createProperty(
-                        modifiers = "private const",
-                        name = paramKey,
-                        type = null,
-                        isVar = false,
-                        initializer = "\"$paramKey\""
+            .createCompanionObject()
+            .apply {
+                for (param in params) {
+                    val paramKey = param.keyName(ktClass.name)
+                    addDeclaration(
+                        factory.createProperty(
+                            modifiers = "private const",
+                            name = paramKey,
+                            type = null,
+                            isVar = false,
+                            initializer = "\"$paramKey\""
+                        )
                     )
-                )
+                }
             }
-        }
 
     private fun createWriteFunction() =
         factory
-        .createFunction("fun write(${ktClass.name.lowerFirst()}: ${ktClass.name})")
-        .append(
-            factory.createBlock(
-                "sharedPreferences.edit()\n" + params.toWriters(ktClass.name) + ".apply()"
+            .createFunction("fun write(${ktClass.name.lowerFirst()}: ${ktClass.name})")
+            .append(
+                factory.createBlock(
+                    "sharedPreferences.edit()\n" + params.toWriters(ktClass.name) + ".apply()"
+                )
             )
-        )
 
     private fun createReadFunction() =
         factory
-        .createFunction("fun read(): ${ktClass.name}")
-        .append(
-            factory.createBlock(
-                "return ${ktClass.name}(\n" + params.toReaders(ktClass.name) + ")"
+            .createFunction("fun read(): ${ktClass.name}")
+            .append(
+                factory.createBlock(
+                    "return ${ktClass.name}(\n" + params.toReaders(ktClass.name) + ")"
+                )
             )
-        )
 
     private fun createSharedPrefsClass(): KtClass =
         factory.createClass("class ${ktClass.name + CLASS_SUFFIX}")
