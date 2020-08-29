@@ -5,6 +5,7 @@ plugins {
     java
     kotlin("jvm") version "1.3.72"
     id("org.jlleitschuh.gradle.ktlint") version "9.3.0"
+    id("io.gitlab.arturbosch.detekt") version "1.12.0"
 }
 
 group = "me.haroldmartin"
@@ -12,6 +13,15 @@ version = "0.1.0"
 
 repositories {
     mavenCentral()
+    jcenter()
+}
+
+detekt {
+    failFast = true // fail build on any finding
+    buildUponDefaultConfig = true // preconfigure defaults
+    config =
+        files("$projectDir/config/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
+    baseline = file("$projectDir/config/baseline.xml") // a way of suppressing issues before introducing detekt
 }
 
 dependencies {

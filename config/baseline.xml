@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ComplexCondition:SharedPrefsAction.kt$this is KtClass &amp;&amp; !this.isEnum() &amp;&amp; !this.isInterface() &amp;&amp; !this.isAnnotation() &amp;&amp; !this.isSealed()</ID>
+    <ID>ReturnCount:SharedPrefsAction.kt$fun AnActionEvent.getPsiElement(): PsiElement?</ID>
+  </CurrentIssues>
+</SmellBaseline>
