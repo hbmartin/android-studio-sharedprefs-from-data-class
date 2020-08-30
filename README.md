@@ -6,6 +6,8 @@ Android Studio plugin to generate SharedPreferences reader / writer class based 
 [![Build Status](https://www.travis-ci.com/hbmartin/android-studio-sharedprefs-from-data-class.svg?branch=master)](https://www.travis-ci.com/hbmartin/android-studio-sharedprefs-from-data-class)
 ![GitHub issues](https://img.shields.io/github/issues/hbmartin/android-studio-sharedprefs-from-data-class)
 
+<img src="media/demo.gif" />
+
 ## Installation & Usage
 1. Download from the [release page](https://github.com/hbmartin/android-studio-sharedprefs-from-data-class/releases), search for "Kotlin Data Class to SharedPreferences" in Preferences > Plugins, or visit the [plugin listing page](https://plugins.jetbrains.com/plugin/14970-kotlin-data-class-to-sharedpreferences/)
 
