@@ -53,7 +53,10 @@ tasks {
     }
 
     getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
-        changeNotes("""v0.1.1 - First release - Kotlin Data Class to SharedPreferences""")
+        changeNotes(
+            "v0.2.0 - Kotlin Data Class to SharedPreferences\nNow uses defaults from class constructor"
+                .trimMargin()
+        )
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
