@@ -8,8 +8,9 @@ private const val CLASS_SUFFIX = "SharedPreferencesRepository"
 class CodeGenerator(
     private val ktClass: KtClass
 ) {
-    private val params = ktClass.findParams()
+    private val params = ktClass.getParamsAsDefaultableParameterList()
     private val factory = KtPsiFactory(ktClass.project)
+    private val ktClassName = ktClass.name ?: "SP"
 
     fun generate() {
         val newClass = createSharedPrefsClass()
@@ -29,7 +30,7 @@ class CodeGenerator(
             .createCompanionObject()
             .apply {
                 for (param in params) {
-                    val paramKey = param.keyName(ktClass.name)
+                    val paramKey = param.name.keyName(ktClassName)
                     addDeclaration(
                         factory.createProperty(
                             modifiers = "private const",
@@ -44,24 +45,24 @@ class CodeGenerator(
 
     private fun createWriteFunction() =
         factory
-            .createFunction("fun write(${ktClass.name.lowerFirst()}: ${ktClass.name})")
+            .createFunction("fun write(${ktClassName.lowerFirst()}: $ktClassName)")
             .append(
                 factory.createBlock(
-                    "sharedPreferences.edit()\n" + params.toWriters(ktClass.name) + ".apply()"
+                    "sharedPreferences.edit()\n" + params.toWriters(ktClassName) + ".apply()"
                 )
             )
 
     private fun createReadFunction() =
         factory
-            .createFunction("fun read(): ${ktClass.name}")
+            .createFunction("fun read(): $ktClassName")
             .append(
                 factory.createBlock(
-                    "return ${ktClass.name}(\n" + params.toReaders(ktClass.name) + ")"
+                    "return $ktClassName(\n" + params.toReaders(ktClassName) + ")"
                 )
             )
 
     private fun createSharedPrefsClass(): KtClass =
-        factory.createClass("class ${ktClass.name + CLASS_SUFFIX}")
+        factory.createClass("class ${ktClassName + CLASS_SUFFIX}")
             .append(
                 factory.createPrimaryConstructor(
                     "@Inject constructor(\nprivate val sharedPreferences: SharedPreferences\n)"
