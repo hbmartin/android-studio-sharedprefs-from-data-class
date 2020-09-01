@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "me.haroldmartin"
-version = "0.2.0"
+version = "0.2.1"
 
 repositories {
     mavenCentral()
@@ -54,7 +54,7 @@ tasks {
 
     getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
         changeNotes(
-            "v0.2.0 - Kotlin Data Class to SharedPreferences\nNow uses defaults from class constructor"
+            "v0.2.1 - Kotlin Data Class to SharedPreferences\nNow uses defaults from class constructor"
                 .trimMargin()
         )
     }
