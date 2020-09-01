@@ -19,29 +19,14 @@ class SharedPrefsAction : AnAction() {
     }
 
     override fun actionPerformed(e: AnActionEvent) {
-//        if(!ktClass.isData()) {
-//            Messages.showErrorDialog("ParcelableGenerator only support for data class.", "Sorry");
-//
-//        } else {
-//            GenerateDialog dlg = new GenerateDialog(ktClass);
-//            dlg.show();
-//            if (dlg.isOK()) {
-//                generateParcelable(ktClass, dlg.getSelectedFields());
-//            }
-//        generateParcelable(ktClass, ktClass.findParams())
-        //        }
-
         e.getPsiElement()?.let { generateSharedPrefs(it) }
     }
 
     private fun generateSharedPrefs(element: PsiElement) {
         element.getKtClass()?.let {
-            object : WriteCommandAction.Simple<Any?>(it.project, it.containingFile) {
-                @Throws(Throwable::class)
-                override fun run() {
-                    CodeGenerator(it).generate()
-                }
-            }.execute()
+            WriteCommandAction.runWriteCommandAction(it.project) {
+                CodeGenerator(it).generate()
+            }
         }
     }
 }
