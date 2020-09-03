@@ -11,11 +11,13 @@ val DefaultableParameter.defaultOrFallback: String
 
 private val FALLBACKS = mapOf(
     "Boolean" to "false",
-    "Float" to "0",
+    "Float" to "0f",
     "Int" to "0",
     "Long" to "0",
     "String" to "\"\"",
     "Set<String>" to "setOf<String>()",
+    "MutableSet<String>" to "mutableSetOf<String>()",
     "String?" to "null",
-    "Set<String>?" to "null"
+    "Set<String>?" to "null",
+    "MutableSet<String>?" to "null"
 )

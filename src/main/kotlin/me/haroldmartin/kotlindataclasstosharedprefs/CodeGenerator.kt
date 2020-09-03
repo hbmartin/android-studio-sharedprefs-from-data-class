@@ -30,6 +30,7 @@ class CodeGenerator(
             .createCompanionObject()
             .apply {
                 for (param in params) {
+                    if (!isEligibleTypeForSharedPrefs(param.type) && param.default != null) { continue }
                     val paramKey = param.name.keyName(ktClassName)
                     addDeclaration(
                         factory.createProperty(

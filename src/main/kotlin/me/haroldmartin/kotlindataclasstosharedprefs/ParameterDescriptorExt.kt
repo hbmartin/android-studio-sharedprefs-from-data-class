@@ -31,29 +31,19 @@ private fun toReader(className: String, type: String, name: String, defaultValue
     return "$name = $method$signature"
 }
 
-private fun castIfNecessary(type: String): String {
-    val cast = when (type) {
-        "String" -> "String"
-        "Set<String>?" -> "Set<String>?"
-        else -> ""
-    }
-    return if (cast.isEmpty()) cast else " as $cast"
-}
+private val castRequiredForNonNullTypes = setOf("String", "Set<String>", "MutableSet<String>")
+private fun castIfNecessary(type: String) =
+    if (castRequiredForNonNullTypes.contains(type)) " as $type" else ""
 
-private fun safeTypeName(type: String) = type.replace("?", "").replace("Set<String>", "StringSet")
+private fun safeTypeName(type: String) = type.replace("?", "")
+    .replace("MutableSet<String>", "StringSet")
+    .replace("Set<String>", "StringSet")
 
-private val eligibleTypes = setOf("Boolean", "Float", "Int", "Long", "String", "String?", "Set<String>", "Set<String>?")
-private fun isEligibleTypeForSharedPrefs(type: String) = eligibleTypes.contains(type)
-
-// fun KtClass.getParamsAsValueParameterDescriptorList(): List<ValueParameterDescriptor> {
-//    return KotlinCacheService.getInstance(this.project)
-//        .getResolutionFacade(listOf(this))
-//        .getFrontendService(ResolveSession::class.java)
-//        .getClassDescriptor(this, NoLookupLocation.FROM_IDE)
-//        .unsubstitutedPrimaryConstructor
-//        ?.valueParameters
-//        ?: emptyList()
-// }
+private val eligibleTypes = setOf(
+    "Boolean", "Float", "Int", "Long", "String", "String?",
+    "Set<String>", "Set<String>?", "MutableSet<String>", "MutableSet<String>?"
+)
+fun isEligibleTypeForSharedPrefs(type: String) = eligibleTypes.contains(type)
 
 internal fun String.lowerFirst(): String {
     val c = toCharArray()
