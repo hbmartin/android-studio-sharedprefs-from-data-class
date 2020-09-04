@@ -2,7 +2,7 @@ publish:
 	./gradlew publishPlugin
 
 lint:
-	./gradlew clean ktlintCheck detekt
+	./gradlew clean ktlintCheck detekt buildPlugin
 
 tag:
 	git diff-index --quiet HEAD --  # checks for unstaged/uncomitted files
@@ -15,4 +15,7 @@ check-master:
 pull:
 	git pull
 
-release: check-master pull lint tag publish
+checkchange:
+    grep `grep '^version' build.gradle.kts  | cut -f2 -d'=' | tr -d '" '` CHANGELOG.html
+
+release: check-master pull lint tag

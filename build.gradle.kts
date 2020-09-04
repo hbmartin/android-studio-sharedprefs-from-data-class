@@ -53,10 +53,7 @@ tasks {
     }
 
     getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
-        changeNotes(
-            "v0.2.1 - Kotlin Data Class to SharedPreferences\nNow uses defaults from class constructor"
-                .trimMargin()
-        )
+        changeNotes(file("CHANGELOG.html").readText())
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
