@@ -4,7 +4,7 @@ Android Studio plugin to generate SharedPreferences reader / writer class based 
 [![JetBrains IntelliJ Plugins](https://img.shields.io/jetbrains/plugin/v/14970-kotlin-data-class-to-sharedpreferences)](https://plugins.jetbrains.com/plugin/14970-kotlin-data-class-to-sharedpreferences/)
 [![CodeFactor](https://www.codefactor.io/repository/github/hbmartin/android-studio-sharedprefs-from-data-class/badge)](https://www.codefactor.io/repository/github/hbmartin/android-studio-sharedprefs-from-data-class)
 [![Build Status](https://www.travis-ci.com/hbmartin/android-studio-sharedprefs-from-data-class.svg?branch=master)](https://www.travis-ci.com/hbmartin/android-studio-sharedprefs-from-data-class)
-[![GitHub issues](https://img.shields.io/github/issues/hbmartin/android-studio-sharedprefs-from-data-class)](https://github.com/hbmartin/android-studio-sharedprefs-from-data-class/issues)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=hbmartin_android-studio-sharedprefs-from-data-class&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=hbmartin_android-studio-sharedprefs-from-data-class)
 
 <img src="media/demo.gif" />
 
@@ -28,5 +28,24 @@ Android Studio plugin to generate SharedPreferences reader / writer class based 
 
 ## License
 
-[MIT](LICENSE)
+MIT License
 
+Copyright (c) Harold Martin 2020
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

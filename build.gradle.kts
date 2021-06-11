@@ -1,11 +1,12 @@
 import org.gradle.api.JavaVersion.VERSION_1_8
 
 plugins {
-    id("org.jetbrains.intellij") version "0.4.21"
-    java
-    kotlin("jvm") version "1.3.72"
-    id("org.jlleitschuh.gradle.ktlint") version "9.3.0"
-    id("io.gitlab.arturbosch.detekt") version "1.12.0"
+    id("java")
+    kotlin("jvm") version "1.5.10"
+    id("org.jetbrains.intellij") version "1.0"
+    id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
+    id("io.gitlab.arturbosch.detekt") version "1.17.1"
+    id("com.github.ben-manes.versions") version "0.39.0"
 }
 
 group = "me.haroldmartin"
@@ -27,13 +28,17 @@ detekt {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
-    testImplementation("junit", "junit", "4.12")
+
+    testImplementation("junit", "junit", "4.13.2")
 }
 
 intellij {
-    version = "2019.3"
-    updateSinceUntilBuild = false
-    setPlugins("Kotlin", "java")
+    pluginName.set("Kotlin Data Class to SharedPrefs")
+    version.set("2019.3")
+    type.set("IC")
+    downloadSources.set(true)
+    updateSinceUntilBuild.set(false)
+    plugins.set(listOf("Kotlin", "java"))
 //    alternativeIdePath = "/Applications/Android Studio 4.2 Preview.app"
 }
 
@@ -49,12 +54,13 @@ configure<JavaPluginConvention> {
 
 tasks {
     publishPlugin {
-        token(System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken"))
+        dependsOn("patchChangelog")
+        token.set(System.getenv("PUBLISH_TOKEN"))
     }
 
-    getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
-        changeNotes(file("CHANGELOG.html").readText())
-    }
+//    getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
+//        changeNotes(file("CHANGELOG.html").readText())
+//    }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         targetCompatibility = VERSION_1_8.toString()
