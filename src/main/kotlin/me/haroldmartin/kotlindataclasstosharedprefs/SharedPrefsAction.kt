@@ -31,6 +31,7 @@ class SharedPrefsAction : AnAction() {
     }
 }
 
+@Suppress("ReturnCount")
 fun AnActionEvent.getPsiElement(): PsiElement? {
     val editor = getData(PlatformDataKeys.EDITOR) ?: return null
     val project = editor.project ?: return null
@@ -40,6 +41,7 @@ fun AnActionEvent.getPsiElement(): PsiElement? {
     return psiFile.findElementAt(location.startOffset)
 }
 
+@Suppress("ComplexCondition")
 fun PsiElement.getKtClass(): KtClass? {
     return if (this is KtLightElement<*, *>) {
         this.kotlinOrigin?.getKtClass()
