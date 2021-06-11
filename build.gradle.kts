@@ -1,4 +1,6 @@
-import org.gradle.api.JavaVersion.VERSION_1_8
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+fun properties(key: String) = project.findProperty(key).toString()
 
 plugins {
     id("java")
@@ -10,7 +12,7 @@ plugins {
 }
 
 group = "me.haroldmartin"
-version = "0.3.1"
+version = properties("pluginVersion")
 
 repositories {
     mavenCentral()
@@ -42,16 +44,6 @@ intellij {
 //    alternativeIdePath = "/Applications/Android Studio 4.2 Preview.app"
 }
 
-java {
-    sourceCompatibility = VERSION_1_8
-    targetCompatibility = VERSION_1_8
-}
-
-configure<JavaPluginConvention> {
-    sourceCompatibility = VERSION_1_8
-    targetCompatibility = VERSION_1_8
-}
-
 tasks {
     // Set the compatibility versions to 1.8
     withType<JavaCompile> {
@@ -72,14 +64,7 @@ tasks {
     }
 
     patchPluginXml {
+        version.set(properties("pluginVersion"))
         changeNotes.set(file("CHANGELOG.html").readText())
-    }
-
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        targetCompatibility = VERSION_1_8.toString()
-        sourceCompatibility = VERSION_1_8.toString()
-        kotlinOptions {
-            jvmTarget = VERSION_1_8.toString()
-        }
     }
 }
