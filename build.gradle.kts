@@ -35,7 +35,7 @@ dependencies {
 }
 
 intellij {
-    pluginName.set("Kotlin Data Class to SharedPrefs")
+    pluginName.set(properties("pluginName"))
     version.set("2019.3")
     type.set("IC")
     downloadSources.set(true)
