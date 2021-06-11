@@ -2,7 +2,7 @@ publish:
 	./gradlew publishPlugin
 
 lint:
-	./gradlew clean ktlintCheck detekt buildPlugin
+	./gradlew clean ktlintCheck detekt
 
 tag:
 	git tag "v`grep '^version' build.gradle.kts  | cut -f2 -d'=' | tr -d '" '`"
@@ -18,4 +18,4 @@ pull:
 checkchangelog:
 	grep -q `grep '^version' build.gradle.kts  | cut -f2 -d'=' | tr -d '" '` CHANGELOG.html
 
-release: check-master pull checkchangelog lint tag
+release: check-master pull checkchangelog lint tag publish
