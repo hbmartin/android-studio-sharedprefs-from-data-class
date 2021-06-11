@@ -53,14 +53,27 @@ configure<JavaPluginConvention> {
 }
 
 tasks {
-    publishPlugin {
-        dependsOn("patchChangelog")
-        token.set(System.getenv("PUBLISH_TOKEN"))
+    // Set the compatibility versions to 1.8
+    withType<JavaCompile> {
+        sourceCompatibility = "1.8"
+        targetCompatibility = "1.8"
+    }
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions.jvmTarget = "1.8"
     }
 
-//    getByName<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
-//        changeNotes(file("CHANGELOG.html").readText())
-//    }
+    withType<io.gitlab.arturbosch.detekt.Detekt> {
+        jvmTarget = "1.8"
+    }
+
+    publishPlugin {
+        token.set(System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken"))
+        channels.set(listOf("default"))
+    }
+
+    patchPluginXml {
+        changeNotes.set(file("CHANGELOG.html").readText())
+    }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         targetCompatibility = VERSION_1_8.toString()
